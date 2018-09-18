@@ -6,7 +6,7 @@
 [0m[[0m[0mdebug[0m] [0m[0mInvalidated products: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0mExternal API changes: API Changes: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0mModified binary dependencies: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial directly invalidated classes: Set(com.example.Printer.Greeting, com.example.Technician, com.example.Technician.WhoToGreet, com.example.SerializationDemo, com.example.Technician.Greet, com.example.Printer)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial directly invalidated classes: Set(com.example.SerializationDemo, com.example.TechnicianActor.SetVessel, com.example.TechnicianActor.ChangeStatus, com.example.TechnicianActor)[0m
 [0m[[0m[0mdebug[0m] [0m[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0mSources indirectly invalidated by:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	product: Set()[0m
@@ -17,11 +17,11 @@
 [0m[[0m[0minfo[0m] [0m[0mCompiling 1 Scala source to C:\Users\Triinu\Projects\technician-movement\target\scala-2.12\classes ...[0m
 [0m[[0m[0mdebug[0m] [0m[0mGetting org.scala-sbt:compiler-bridge_2.12:1.1.7:compile for Scala 2.12.6[0m
 [0m[[0m[0mdebug[0m] [0m[0mGetting org.scala-sbt:compiler-bridge_2.12:1.1.7:compile for Scala 2.12.6[0m
-[0m[[0m[0mdebug[0m] [0m[0m[zinc] Running cached compiler 7aefcbc0 for Scala compiler version 2.12.6[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] Running cached compiler 1271dda5 for Scala compiler version 2.12.6[0m
 [0m[[0m[0mdebug[0m] [0m[0m[zinc] The Scala compiler is invoked with:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	-bootclasspath[0m
 [0m[[0m[0mdebug[0m] [0m[0m	C:\Program Files\Java\jre1.8.0_101\lib\resources.jar;C:\Program Files\Java\jre1.8.0_101\lib\rt.jar;C:\Program Files\Java\jre1.8.0_101\lib\sunrsasign.jar;C:\Program Files\Java\jre1.8.0_101\lib\jsse.jar;C:\Program Files\Java\jre1.8.0_101\lib\jce.jar;C:\Program Files\Java\jre1.8.0_101\lib\charsets.jar;C:\Program Files\Java\jre1.8.0_101\lib\jfr.jar;C:\Program Files\Java\jre1.8.0_101\classes;C:\Users\Triinu\.sbt\boot\scala-2.12.6\lib\scala-library.jar[0m
 [0m[[0m[0mdebug[0m] [0m[0m	-classpath[0m
 [0m[[0m[0mdebug[0m] [0m[0m	C:\Users\Triinu\Projects\technician-movement\target\scala-2.12\classes;C:\Users\Triinu\.ivy2\cache\com.typesafe.akka\akka-actor_2.12\jars\akka-actor_2.12-2.5.16.jar;C:\Users\Triinu\.ivy2\cache\com.typesafe\config\bundles\config-1.3.3.jar;C:\Users\Triinu\.ivy2\cache\org.scala-lang.modules\scala-java8-compat_2.12\bundles\scala-java8-compat_2.12-0.8.0.jar;C:\Users\Triinu\.ivy2\cache\com.typesafe.akka\akka-testkit_2.12\jars\akka-testkit_2.12-2.5.16.jar;C:\Users\Triinu\.ivy2\cache\com.typesafe.akka\akka-stream_2.12\jars\akka-stream_2.12-2.5.16.jar;C:\Users\Triinu\.ivy2\cache\com.typesafe.akka\akka-protobuf_2.12\jars\akka-protobuf_2.12-2.5.16.jar;C:\Users\Triinu\.ivy2\cache\org.reactivestreams\reactive-streams\jars\reactive-streams-1.0.2.jar;C:\Users\Triinu\.ivy2\cache\com.typesafe\ssl-config-core_2.12\bundles\ssl-config-core_2.12-0.2.4.jar;C:\Users\Triinu\.ivy2\cache\org.scala-lang.modules\scala-parser-combinators_2.12\bundles\scala-parser-combinators_2.12-1.1.1.jar;C:\Users\Triinu\.ivy2\cache\com.lightbend.akka\akka-stream-alpakka-csv_2.12\jars\akka-stream-alpakka-csv_2.12-0.8.jar[0m
-[0m[[0m[0mdebug[0m] [0m[0mScala compilation took 2.866442919 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mScala compilation took 1.019103982 s[0m
 [0m[[0m[0minfo[0m] [0m[0mDone compiling.[0m
