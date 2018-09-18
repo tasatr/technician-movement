@@ -1,0 +1,6 @@
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\main\scala\com\example\AkkaQuickstart.scala:78:16: not found: value Tick[0m
+[0m[[0m[31merror[0m] [0m[0m    .map(xs => Tick(xs(0).toLong, xs(1).toDouble, xs(2).toDouble))[0m
+[0m[[0m[31merror[0m] [0m[0m               ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\main\scala\com\example\AkkaQuickstart.scala:84:14: not found: type TickToDeltaStage[0m
+[0m[[0m[31merror[0m] [0m[0m    .via(new TickToDeltaStage())[0m
+[0m[[0m[31merror[0m] [0m[0m             ^[0m
