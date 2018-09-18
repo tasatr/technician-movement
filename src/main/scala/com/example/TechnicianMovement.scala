@@ -2,7 +2,7 @@
 package com.example
 
 import akka.actor.{ Actor, ActorLogging, ActorRef, ActorSystem, Props }
-import akka.stream.scaladsl.{FileIO, Flow, Keep, Sink, Source}
+import akka.stream.scaladsl.{ FileIO, Flow, Keep, Sink, Source }
 import java.nio.file.Paths
 import akka.stream.alpakka.csv.scaladsl.CsvParsing
 import akka.stream.alpakka.csv.scaladsl.CsvToMap
@@ -13,36 +13,42 @@ import java.nio.file.StandardOpenOption._
 //import akka.stream.scaladsl.Framing
 //import akka.util.ByteString
 
-
 //#greeter-companion
 //#greeter-messages
-object Greeter {
+object Technician {
   //#greeter-messages
-  def props(message: String, printerActor: ActorRef): Props = Props(new Greeter(message, printerActor))
+  def props(name: String): Props = Props(new Technician(name))
   //#greeter-messages
-  final case class WhoToGreet(who: String)
+  final case class SetVessel(vesselName: String)
+  final case class ChangeStatus(newStatus: String)
   case object Greet
 }
 //#greeter-messages
 //#greeter-companion
 
-//#greeter-actor
-class Greeter(message: String, printerActor: ActorRef) extends Actor {
-  import Greeter._
-  import Printer._
-
-  var greeting = ""
-
+//#technician-actor
+class Technician(name: String) extends Actor {
+  import Technician._
+  
+  var vessel = ""
+  var currentStatus = ""
+  
   def receive = {
-    case WhoToGreet(who) =>
-      greeting = message + ", " + who
-    case Greet           =>
+    case SetVessel(vesselName) => {
+      vessel = vesselName
+      println("Setting vessel to " + vesselName)
+    }
+    case ChangeStatus(newStatus) => {
+      currentStatus = newStatus
+      println(name + " new status is: " + newStatus)
+    }
+    case _ =>
       //#greeter-send-message
-      printerActor ! Greeting(greeting)
-      //#greeter-send-message
+      println("Unknown message: " + _)
+    //#greeter-send-message
   }
 }
-//#greeter-actor
+//#technician-actor
 
 //#printer-companion
 //#printer-messages
@@ -65,19 +71,30 @@ class Printer extends Actor with ActorLogging {
   }
 }
 //#printer-actor
-  
- object SerializationDemo extends App {
 
-  implicit val system = ActorSystem("serialization")
+object SerializationDemo extends App {
+
+  implicit val system = ActorSystem("technicians")
   implicit val mat = ActorMaterializer()
 
-    
-    FileIO.fromPath(Paths.get("movements.csv"))
-   .via(CsvParsing.lineScanner())
-  .via(CsvToMap.toMap())
-  .map(_.mapValues(_.utf8String))
-  .runForeach(println)
+  // Create the printer actor
+  val printer: ActorRef = system.actorOf(Printer.props, "printerActor")
 
+  def generateActor (name: String, vessel: String, movementType: String) = {
+    // Create the 'technician' actors
+    println("creating actor " + name);
+    val technicianActor: ActorRef = system.actorOf(Technician.props(name), name)
+    
+    technicianActor ! Technician.SetVessel(vessel)
+    technicianActor ! Technician.ChangeStatus(movementType)
+  }
+  
+  FileIO.fromPath(Paths.get("movements.csv"))
+    .via(CsvParsing.lineScanner())
+    .via(CsvToMap.toMap())
+    .map(_.mapValues(_.utf8String))
+    .runForeach(x => generateActor(x("Person"), x("Location"), x("Movement type")))
+    
 
 } 
   
