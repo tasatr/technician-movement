@@ -1,4 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\main\scala\com\example\TechnicianMovement.scala:81:9: Unmatched closing brace '}' ignored here[0m
-[0m[[0m[31merror[0m] [0m[0m        }[0m
-[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\main\scala\com\example\TimeSettings.scala:34:12: not found: value timestampstr[0m
+[0m[[0m[31merror[0m] [0m[0m    return timestampstr[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m

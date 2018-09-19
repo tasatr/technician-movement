@@ -11,5 +11,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-testkit" % akkaVersion,
   "org.scalatest" %% "scalatest" % "3.0.5" % "test",
   "com.typesafe.akka" %% "akka-stream" % "2.5.16",
-  "com.lightbend.akka" %% "akka-stream-alpakka-csv" % "0.8"
+  "com.lightbend.akka" %% "akka-stream-alpakka-csv" % "0.8",
+  libraryDependencies += "org.scalactic" %% "scalactic" % "3.0.5",
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.5" % "test"
 )
