@@ -11,19 +11,19 @@ object TimeSettings {
     
     //Get the earliest timestamp from the first input file
     val timeFromFirstFile = getFirstTimestampStr(file1)
-    val firstTimeInSec = getTimestampInSec(timeFromFirstFile, "dd.MM.yyyy hh:mm")
+    val firstTime = getTimestamp(timeFromFirstFile, "dd.MM.yyyy hh:mm")
 
-    println(firstTimeInSec)
+    println(firstTime)
     
     //Get the earliest timestamp from the second input file
     val timeFromSecondFile = getFirstTimestampStr(file2)
-    val secondTimeInSec = getTimestampInSec(timeFromSecondFile, "yyyy-MM-dd hh:mm:ss")
+    val secondTime = getTimestamp(timeFromSecondFile, "yyyy-MM-dd hh:mm:ss")
     
     
-    println(secondTimeInSec)
+    println(secondTime)
     
 
-    return min(firstTimeInSec, secondTimeInSec)
+    return min(firstTime, secondTime)
   }
 
   private def getFirstTimestampStr(filename: String): String = {
@@ -34,21 +34,24 @@ object TimeSettings {
     return timestampStr
   }
   
-  private def getTimestampInSec(timestamp: String, format: String): Long = {
+  //Returns timestamp in milliseconds
+  def getTimestamp(timestamp: String, format: String): Long = {
     try {
        val formatter = new SimpleDateFormat(format);
-       return formatter.parse(timestamp).getTime / 1000;
+       return formatter.parse(timestamp).getTime;
     } catch {
       case e: Exception => 
         println("ERROR parsing timestamp " + timestamp + " in format " + format);
-        return System.currentTimeMillis / 1000
+        return System.currentTimeMillis
     }
+  }
+  
+  //This program must run through 7 days of records in 14 mins
+  def getConvertedTime(time: Long):Long = {
+    //1 day in 2 mins : 24h = 1440m
+    return time/720
   }
 }
 
-class TimeSettings(dataEarliestTime: Long) {
-  val startTimeInSec: Long = System.currentTimeMillis / 1000 //Current time in seconds
-  var dataStartTimeInSec: Long = dataEarliestTime //Timestamp from the first record
 
-}
 
