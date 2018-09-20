@@ -1,10 +1,5 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\main\scala\com\technicianmovement\TurbineActor.scala:55:11: overloaded method value warning with alternatives:[0m
-[0m[[0m[31merror[0m] [0m[0m  (template: String,arg1: Any,arg2: Any,arg3: Any,arg4: Any)Unit <and>[0m
-[0m[[0m[31merror[0m] [0m[0m  (template: String,arg1: Any,arg2: Any,arg3: Any)Unit <and>[0m
-[0m[[0m[31merror[0m] [0m[0m  (template: String,arg1: Any,arg2: Any)Unit <and>[0m
-[0m[[0m[31merror[0m] [0m[0m  (template: String,arg1: Any)Unit <and>[0m
-[0m[[0m[31merror[0m] [0m[0m  (message: String)Unit[0m
-[0m[[0m[31merror[0m] [0m[0m cannot be applied to (Any => String)[0m
-[0m[[0m[31merror[0m] [0m[0m      log.warning("Unknown message: " + _)[0m
-[0m[[0m[31merror[0m] [0m[0m          ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\main\scala\com\technicianmovement\TechnicianMovement.scala:50:57: not enough arguments for constructor TurbineActor: (turbineID: String, loggerActor: akka.actor.ActorRef)com.technicianmovement.TurbineActor.[0m
+[0m[[0m[31merror[0m] [0m[0mUnspecified value parameter loggerActor.[0m
+[0m[[0m[31merror[0m] [0m[0m      val turbineActor: ActorRef = system.actorOf(Props(new TurbineActor(turbineID)), turbineID)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                        ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m

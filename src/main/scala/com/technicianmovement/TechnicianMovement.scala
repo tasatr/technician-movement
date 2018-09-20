@@ -22,6 +22,7 @@ object SerializationDemo extends App {
   implicit val system = ActorSystem("technicians")
   implicit val mat = ActorMaterializer()
   val log = Logging(system.eventStream, "com.technicianmovement.TechnicianMovement")
+   val loggerActor: ActorRef = system.actorOf(Props(new LoggerActor()))
 
   def generateTechnicianActor(name: String, vessel: String, movementType: String, date: Long, inTime: Long) = {
     // Create the 'technician' actors
@@ -47,7 +48,7 @@ object SerializationDemo extends App {
     val convertedTime = TimeSettings.getConvertedTime(inTime)
 
     try {
-      val turbineActor: ActorRef = system.actorOf(Props(new TurbineActor(turbineID)), turbineID)
+      val turbineActor: ActorRef = system.actorOf(Props(new TurbineActor(turbineID, loggerActor)), turbineID)
       log.debug("Schedule " + turbineID + " in " + convertedTime + " milliseconds")
       system.scheduler.scheduleOnce(new FiniteDuration(convertedTime, TimeUnit.MILLISECONDS)) {
         turbineActor ! TurbineActor.SetStatus(date, power, status)

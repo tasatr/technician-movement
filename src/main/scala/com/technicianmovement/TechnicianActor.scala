@@ -10,10 +10,10 @@ object TechnicianActor {
   final case class SetStatus(date: Long, newVessel: String, newMovement: String)
 }
 
-class TechnicianActor(name: String) extends Actor {
+class TechnicianActor(name: String) extends Actor with ActorLogging {
   import TechnicianActor._
 
-  val log = Logging(context.system, this)
+//  val log = Logging(context.system, this)
 
   var vessel = ""
   var currentStatus = ""

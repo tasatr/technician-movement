@@ -1,10 +1,12 @@
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(com.example.TechnicianActorSpec, org.scalatest.tools.Framework$$anon$1@446ef050, false, [SuiteSelector])[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(TechnicianMovementTest, org.scalatest.tools.Framework$$anon$1@446ef050, false, [SuiteSelector])[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 1 second, 211 milliseconds.[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 2[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 2, aborted 0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 2, failed 0, canceled 0, ignored 0, pending 0[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(com.technicianmovement.TechnicianActorSpec, org.scalatest.tools.Framework$$anon$1@2e141cca, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(com.technicianmovement.TurbineActorSpec, org.scalatest.tools.Framework$$anon$1@2e141cca, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(com.technicianmovement.TechnicianMovementTest, org.scalatest.tools.Framework$$anon$1@2e141cca, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 1 second, 153 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 3[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 3, aborted 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 3, failed 0, canceled 0, ignored 0, pending 0[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mAll tests passed.[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	TechnicianMovementTest[0m
-[0m[[0m[0mdebug[0m] [0m[0m	com.example.TechnicianActorSpec[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com.technicianmovement.TurbineActorSpec[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com.technicianmovement.TechnicianMovementTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com.technicianmovement.TechnicianActorSpec[0m

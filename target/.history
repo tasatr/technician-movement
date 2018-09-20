@@ -57,3 +57,10 @@ exit
 reStart
 exit
 reStart
+exit
+test
+reStart
+test
+exit
+test
+reStart

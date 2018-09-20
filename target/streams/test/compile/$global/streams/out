@@ -1,13 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\test\scala\com\example\AkkaQuickstartSpec.scala:9:8: not found: object Greeter[0m
-[0m[[0m[31merror[0m] [0m[0mimport Greeter._[0m
-[0m[[0m[31merror[0m] [0m[0m       ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\test\scala\com\example\AkkaQuickstartSpec.scala:10:8: not found: object Printer[0m
-[0m[[0m[31merror[0m] [0m[0mimport Printer._[0m
-[0m[[0m[31merror[0m] [0m[0m       ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\test\scala\com\example\AkkaQuickstartSpec.scala:33:41: not found: value Greeter[0m
-[0m[[0m[31merror[0m] [0m[0m      val helloGreeter = system.actorOf(Greeter.props(helloGreetingMessage, testProbe.ref))[0m
-[0m[[0m[31merror[0m] [0m[0m                                        ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\test\scala\com\example\AkkaQuickstartSpec.scala:37:39: not found: value Greeting[0m
-[0m[[0m[31merror[0m] [0m[0m      testProbe.expectMsg(500 millis, Greeting(helloGreetingMessage + ", " + greetPerson))[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\test\scala\com\technicianmovement\TurbineActorSpec.scala:33:39: not found: value LogError[0m
+[0m[[0m[31merror[0m] [0m[0m      testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Turbine is broken\", \"date\" : \"2015-11-24T00:02:00.000+0000\", \"turbine\" : \"B4B\", \"person\" : \"\", \"error_state\" : \"open\"}"))[0m
 [0m[[0m[31merror[0m] [0m[0m                                      ^[0m
-[0m[[0m[31merror[0m] [0m[0mfour errors found[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
