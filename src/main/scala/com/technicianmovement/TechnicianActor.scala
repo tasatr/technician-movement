@@ -7,7 +7,7 @@ object TechnicianActor {
   //#greeter-messages
   def props(name: String): Props = Props(new TechnicianActor(name))
   //#greeter-messages
-  final case class SetStatus(date: String, newVessel: String, newMovement: String)
+  final case class SetStatus(date: Long, newVessel: String, newMovement: String)
 }
 
 class TechnicianActor(name: String) extends Actor {
@@ -18,7 +18,7 @@ class TechnicianActor(name: String) extends Actor {
   var vessel = ""
   var currentStatus = ""
 
-  def setNewStatus(date: String, newVessel: String, newMovement: String) {
+  def setNewStatus(date: Long, newVessel: String, newMovement: String) {
 
     newMovement match {
       case "Exit" => {

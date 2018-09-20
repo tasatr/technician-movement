@@ -23,7 +23,7 @@ object SerializationDemo extends App {
   implicit val mat = ActorMaterializer()
   val log = Logging(system.eventStream, "com.technicianmovement.TechnicianMovement")
 
-  def generateTechnicianActor(name: String, vessel: String, movementType: String, date: String, inTime: Long) = {
+  def generateTechnicianActor(name: String, vessel: String, movementType: String, date: Long, inTime: Long) = {
     // Create the 'technician' actors
     val convertedTime = TimeSettings.getConvertedTime(inTime)
 
@@ -43,7 +43,7 @@ object SerializationDemo extends App {
 
   }
   
-  def generateTurbineActor(turbineID: String, power: String, status: String, date: String, inTime: Long) = {
+  def generateTurbineActor(turbineID: String, power: String, status: String, date: Long, inTime: Long) = {
     val convertedTime = TimeSettings.getConvertedTime(inTime)
 
     try {
@@ -56,7 +56,7 @@ object SerializationDemo extends App {
       case e: Exception =>
         log.debug("Schedule " + turbineID + " in " + convertedTime + " milliseconds")
         system.scheduler.scheduleOnce(new FiniteDuration(convertedTime, TimeUnit.MILLISECONDS)) {
-          system.actorSelection("/user/" + turbineID) ! TechnicianActor.SetStatus(date, power, status)
+          system.actorSelection("/user/" + turbineID) ! TurbineActor.SetStatus(date, power, status)
         }
     }
 
@@ -66,14 +66,14 @@ object SerializationDemo extends App {
     .via(CsvParsing.lineScanner())
     .via(CsvToMap.toMap())
     .map(_.mapValues(_.utf8String))
-    .runForeach(x => generateTurbineActor(x("ID"), x("ActivePower (MW)"), x("Status"), x("Date"),  TimeSettings.getTimestamp(x("Date"), "yyyy-MM-dd hh:mm:ss") - baseTime))
+    .runForeach(x => generateTurbineActor(x("ID"), x("ActivePower (MW)"), x("Status"), TimeSettings.getTimestamp(x("Date"), "yyyy-MM-dd hh:mm:ss"),  TimeSettings.getTimestamp(x("Date"), "yyyy-MM-dd hh:mm:ss") - baseTime))
 
 
-  FileIO.fromPath(Paths.get("movements.csv"))
-    .via(CsvParsing.lineScanner())
-    .via(CsvToMap.toMap())
-    .map(_.mapValues(_.utf8String))
-    .runForeach(x => generateTechnicianActor(x("Person"), x("Location"), x("Movement type"), x("Date"),  TimeSettings.getTimestamp(x("Date"), "dd.MM.yyyy hh:mm") - baseTime))
+//  FileIO.fromPath(Paths.get("movements.csv"))
+//    .via(CsvParsing.lineScanner())
+//    .via(CsvToMap.toMap())
+//    .map(_.mapValues(_.utf8String))
+//    .runForeach(x => generateTechnicianActor(x("Person"), x("Location"), x("Movement type"), TimeSettings.getTimestamp(x("Date"), "dd.MM.yyyy hh:mm"),  TimeSettings.getTimestamp(x("Date"), "dd.MM.yyyy hh:mm") - baseTime))
 
 } 
   
