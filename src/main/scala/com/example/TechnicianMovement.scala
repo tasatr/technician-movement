@@ -1,4 +1,3 @@
-//#full-example
 package com.example
 
 import akka.actor.{ Actor, ActorLogging, ActorRef, ActorSystem, Props }
@@ -24,20 +23,21 @@ object SerializationDemo extends App {
   implicit val mat = ActorMaterializer()
 
 
-  def generateActor(name: String, vessel: String, movementType: String, inTime: Long) = {
+  def generateTechnicianActor(name: String, vessel: String, movementType: String, inTime: Long) = {
     // Create the 'technician' actors
       val convertedTime = TimeSettings.getConvertedTime(inTime)
 
 //    println("creating actor " + name);
     try {
       val technicianActor: ActorRef = system.actorOf(Props(new TechnicianActor(name)), name)
-      println("Schedule it in " + convertedTime + " milliseconds")
+      println("Schedule " + name + " to " + movementType + " " + vessel + " in " + convertedTime + " milliseconds")
       system.scheduler.scheduleOnce(new FiniteDuration(convertedTime, TimeUnit.MILLISECONDS)) {
         technicianActor ! TechnicianActor.SetStatus(vessel, movementType)
       }
     } catch {
       case e: Exception =>
 //        println(e.getMessage)
+        println("Schedule " + name + " to " + movementType + " " + vessel + " in " + convertedTime + " milliseconds")
         system.scheduler.scheduleOnce(new FiniteDuration(convertedTime, TimeUnit.MILLISECONDS)) {
           system.actorSelection("/user/" + name) ! TechnicianActor.SetStatus(vessel, movementType)
         }
@@ -49,7 +49,7 @@ object SerializationDemo extends App {
     .via(CsvParsing.lineScanner())
     .via(CsvToMap.toMap())
     .map(_.mapValues(_.utf8String))
-    .runForeach(x => generateActor(x("Person"), x("Location"), x("Movement type"), TimeSettings.getTimestamp(x("Date"), "dd.MM.yyyy hh:mm") - baseTime))
+    .runForeach(x => generateTechnicianActor(x("Person"), x("Location"), x("Movement type"), TimeSettings.getTimestamp(x("Date"), "dd.MM.yyyy hh:mm") - baseTime))
 
 } 
   

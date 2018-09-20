@@ -1,7 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\main\scala\com\example\TimeSettings.scala:14:26: not found: value getTimestampInSec[0m
-[0m[[0m[31merror[0m] [0m[0m    val firstTimeInSec = getTimestampInSec(timeFromFirstFile, "dd.MM.yyyy hh:mm")[0m
-[0m[[0m[31merror[0m] [0m[0m                         ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\main\scala\com\example\TimeSettings.scala:20:27: not found: value getTimestampInSec[0m
-[0m[[0m[31merror[0m] [0m[0m    val secondTimeInSec = getTimestampInSec(timeFromSecondFile, "yyyy-MM-dd hh:mm:ss")[0m
-[0m[[0m[31merror[0m] [0m[0m                          ^[0m
-[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\main\scala\com\example\TechnicianMovement.scala:53:22: not found: value generateTurbineActor[0m
+[0m[[0m[31merror[0m] [0m[0m    .runForeach(x => generateTurbineActor(x("Person"), x("Location"), x("Movement type"), TimeSettings.getTimestamp(x("Date"), "dd.MM.yyyy hh:mm") - baseTime))[0m
+[0m[[0m[31merror[0m] [0m[0m                     ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
