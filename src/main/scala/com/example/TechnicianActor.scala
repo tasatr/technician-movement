@@ -34,7 +34,8 @@ class TechnicianActor(name: String) extends Actor {
           currentStatus = newMovement
         } else {
           //TODO: throw error
-          log.error(new Throwable("This is an incorrect state."), " Previously vessel: " + vessel + ", new vessel: " + newVessel + ". Previous movement: " + currentStatus + ", new movement: " + newMovement)
+          throw new InvalidMovementException(newMovement)
+          log.error(new InvalidMovementException("This is an incorrect state."), " Previously vessel: " + vessel + ", new vessel: " + newVessel + ". Previous movement: " + currentStatus + ", new movement: " + newMovement)
         }
       }
       case "Enter" => {
@@ -48,19 +49,13 @@ class TechnicianActor(name: String) extends Actor {
           currentStatus = newMovement
         } else {
         
-          //TODO: throw error
-          log.error(new Throwable("This is an incorrect state."), " Previously vessel: " + vessel + ", new vessel: " + newVessel + ". Previous movement: " + currentStatus + ", new movement: " + newMovement)
+          log.error(new InvalidMovementException("This is an incorrect state."), " Previously vessel: " + vessel + ", new vessel: " + newVessel + ". Previous movement: " + currentStatus + ", new movement: " + newMovement)
         }
       }
       case _ => {
-        log.error(new Throwable("This is an unknown movement."), "This is an unknown movement.")
-        //TODO: throw error
+        log.warning("This is an unknown movement: " + newMovement)
       }
     }
-    //Throw error if a person moves onto a turbine without having exited a ship
-
-    //Throw error if a person exits a turbine withouth having entered a turbine
-
   }
 
   def receive = {

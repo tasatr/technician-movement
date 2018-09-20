@@ -21,23 +21,22 @@ object SerializationDemo extends App {
   
   implicit val system = ActorSystem("technicians")
   implicit val mat = ActorMaterializer()
+  val log = Logging(system.eventStream, "TechnicianMovement")
 
 
   def generateTechnicianActor(name: String, vessel: String, movementType: String, inTime: Long) = {
     // Create the 'technician' actors
       val convertedTime = TimeSettings.getConvertedTime(inTime)
 
-//    println("creating actor " + name);
     try {
       val technicianActor: ActorRef = system.actorOf(Props(new TechnicianActor(name)), name)
-      println("Schedule " + name + " to " + movementType + " " + vessel + " in " + convertedTime + " milliseconds")
+      log.info("Schedule " + name + " to " + movementType + " " + vessel + " in " + convertedTime + " milliseconds")
       system.scheduler.scheduleOnce(new FiniteDuration(convertedTime, TimeUnit.MILLISECONDS)) {
         technicianActor ! TechnicianActor.SetStatus(vessel, movementType)
       }
     } catch {
       case e: Exception =>
-//        println(e.getMessage)
-        println("Schedule " + name + " to " + movementType + " " + vessel + " in " + convertedTime + " milliseconds")
+        log.info("Schedule " + name + " to " + movementType + " " + vessel + " in " + convertedTime + " milliseconds")
         system.scheduler.scheduleOnce(new FiniteDuration(convertedTime, TimeUnit.MILLISECONDS)) {
           system.actorSelection("/user/" + name) ! TechnicianActor.SetStatus(vessel, movementType)
         }

@@ -4,7 +4,7 @@
 		module="technician-movement_2.12"
 		revision="1.0"
 		status="integration"
-		publication="20180918104559"
+		publication="20180920084131"
 	>
 		<description>
 		technician-movement
@@ -33,9 +33,12 @@
 		<dependency org="org.scala-lang" name="scala-compiler" rev="2.12.6" conf="scala-tool->default,optional(default)"/>
 		<dependency org="org.scala-lang" name="scala-library" rev="2.12.6" conf="scala-tool->default,optional(default);compile->default(compile)"/>
 		<dependency org="com.typesafe.akka" name="akka-actor_2.12" rev="2.5.16" conf="compile->default(compile)"/>
+		<dependency org="com.typesafe.akka" name="akka-slf4j_2.12" rev="2.5.16" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.akka" name="akka-testkit_2.12" rev="2.5.16" conf="compile->default(compile)"/>
 		<dependency org="org.scalatest" name="scalatest_2.12" rev="3.0.5" conf="test->default(compile)"/>
 		<dependency org="com.typesafe.akka" name="akka-stream_2.12" rev="2.5.16" conf="compile->default(compile)"/>
 		<dependency org="com.lightbend.akka" name="akka-stream-alpakka-csv_2.12" rev="0.8" conf="compile->default(compile)"/>
+		<dependency org="org.scalactic" name="scalactic_2.12" rev="3.0.5" conf="compile->default(compile)"/>
+		<dependency org="ch.qos.logback" name="logback-classic" rev="1.2.3" conf="compile->default(compile)"/>
 	</dependencies>
 </ivy-module>
