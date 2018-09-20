@@ -1,5 +1,5 @@
 //#full-example
-package com.example
+package com.technicianmovement
 
 import org.scalatest.{ BeforeAndAfterAll, WordSpecLike, Matchers }
 import akka.actor.ActorSystem

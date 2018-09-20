@@ -1,4 +1,4 @@
-package com.example
+package com.technicianmovement
 
 import java.lang.System.currentTimeMillis
 import scala.io.Source

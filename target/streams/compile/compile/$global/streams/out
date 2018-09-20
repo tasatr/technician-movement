@@ -1,4 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\main\scala\com\example\TechnicianMovement.scala:30:21: not found: value context[0m
-[0m[[0m[31merror[0m] [0m[0m  val log = Logging(context.system, this)[0m
-[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\main\scala\com\technicianmovement\TurbineActor.scala:31:5: Missing closing brace `}' assumed here[0m
+[0m[[0m[31merror[0m] [0m[0m    }[0m
+[0m[[0m[31merror[0m] [0m[0m    ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m

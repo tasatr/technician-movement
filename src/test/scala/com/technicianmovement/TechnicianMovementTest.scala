@@ -1,3 +1,4 @@
+package com.technicianmovement
 import org.scalatest.FlatSpec
 
 class TechnicianMovementTest extends FlatSpec {
