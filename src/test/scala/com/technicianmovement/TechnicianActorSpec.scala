@@ -29,10 +29,10 @@ class TechnicianActorSpec(_system: ActorSystem)
       
       technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-23 00:00:00", "yyyy-MM-dd hh:mm:ss"), "vessel1", "Enter")
       technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 00:02:00", "yyyy-MM-dd hh:mm:ss"), "vessel2", "Exit")
-      testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Invalid movement: Previously vessel: vessel1, new vessel: vessel2. Previous movement: Enter, new movement: Exit\", \"date\" : \"2015-11-24T00:02:00.000+0000\", \"turbine\" : \"vessel2\", \"person\" : \"" + technicianName + "\", \"error_state\" : \"open\"}"))
+      testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Invalid exiting (old:'vessel1(Enter)' - new:'vessel2(Exit)')\", \"date\" : \"2015-11-24T00:02:00.000+0000\", \"turbine\" : \"vessel2\", \"person\" : \"" + technicianName + "\", \"error_state\" : \"open\"}"))
 
       technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 00:04:00", "yyyy-MM-dd hh:mm:ss"), "vessel3", "Exit")
-      testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Invalid movement: Previously vessel: vessel2, new vessel: vessel3. Previous movement: Exit, new movement: Exit\", \"date\" : \"2015-11-24T00:04:00.000+0000\", \"turbine\" : \"vessel3\", \"person\" : \"" + technicianName + "\", \"error_state\" : \"open\"}"))
+      testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Invalid exiting (old:'vessel2(Exit)' - new:'vessel3(Exit)')\", \"date\" : \"2015-11-24T00:04:00.000+0000\", \"turbine\" : \"vessel3\", \"person\" : \"" + technicianName + "\", \"error_state\" : \"open\"}"))
     }
   }
   
@@ -44,7 +44,7 @@ class TechnicianActorSpec(_system: ActorSystem)
       
       technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-23 00:00:00", "yyyy-MM-dd hh:mm:ss"), "notaship", "Exit")
       technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 00:02:00", "yyyy-MM-dd hh:mm:ss"), "trb1", "Enter")
-      testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Invalid movement: Previously vessel: notaship, new vessel: trb1. Previous movement: Exit, new movement: Enter\", \"date\" : \"2015-11-24T00:02:00.000+0000\", \"turbine\" : \"trb1\", \"person\" : \"" + technicianName + "\", \"error_state\" : \"open\"}"))
+      testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Invalid entering (old:'notaship(Exit)' - new:'trb1(Enter)')\", \"date\" : \"2015-11-24T00:02:00.000+0000\", \"turbine\" : \"trb1\", \"person\" : \"" + technicianName + "\", \"error_state\" : \"open\"}"))
 
       technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 01:00:00", "yyyy-MM-dd hh:mm:ss"), "trb1", "Exit")
       technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 02:00:00", "yyyy-MM-dd hh:mm:ss"), "Vessel 1", "Enter")
@@ -52,7 +52,7 @@ class TechnicianActorSpec(_system: ActorSystem)
       
       technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 03:00:00", "yyyy-MM-dd hh:mm:ss"), "Vessel 1", "Exit")
       technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 04:00:00", "yyyy-MM-dd hh:mm:ss"), "Vessel 2", "Enter")
-      testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Invalid movement: Previously vessel: Vessel 1, new vessel: Vessel 2. Previous movement: Exit, new movement: Enter\", \"date\" : \"2015-11-24T04:00:00.000+0000\", \"turbine\" : \"Vessel 2\", \"person\" : \"" + technicianName + "\", \"error_state\" : \"open\"}"))
+      testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Invalid entering (old:'Vessel 1(Exit)' - new:'Vessel 2(Enter)')\", \"date\" : \"2015-11-24T04:00:00.000+0000\", \"turbine\" : \"Vessel 2\", \"person\" : \"" + technicianName + "\", \"error_state\" : \"open\"}"))
 
     }
   }

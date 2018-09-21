@@ -5,3 +5,5 @@
 [0m[[0m[0minfo[0m] [0m[0m[32m- should throw error when broken for more than 4 hours without technician[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mA Turbine Actor[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should not throw error when broken for more than 4 hours but technician on board[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mA Turbine Actor[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should throw error when broken for more than 3 minutes after technician left[0m[0m

@@ -46,14 +46,23 @@ class TurbineActor(turbineID: String, loggerActor: ActorRef) extends Actor with 
             log.error(errorMessage)
             loggerActor ! LogError(errorMessage)
           } else {
-            //Throw an error if it has been broken for more than 4 hours and technician has not entered the turbine
-            if (date - brokenSince > 4*60*60*1000 && technicianEntered < 0) {
-              //This turbine has been broken for 4 hours
+            if (technicianExited > 0 && (date - technicianExited > 3*60*1000)) {
+              //Throw an error if technician exited the turbine and it is still broken after 3 minutes
+              val errorMessage = Utils.getErrorMessage(date, turbineID, "", "Turbine is still broken 3 minutes after technician exited", "open")
+              log.error(errorMessage)
+              loggerActor ! LogError(errorMessage)
+            } else if (date - brokenSince > 4*60*60*1000 && technicianEntered < 0){
+              //Throw an error if it has been broken for more than 4 hours and technician has not entered the turbine
               val errorMessage = Utils.getErrorMessage(date, turbineID, "", "Turbine has been broken for more than 4 hours", "open")
               log.error(errorMessage)
-              loggerActor ! LogError(errorMessage)              
+              loggerActor ! LogError(errorMessage)  
+              
+              //Close the previously thrown error of a broken turbine
+              val closedErrorMessage = Utils.getErrorMessage(date, turbineID, "", "Turbine is broken", "closed")
+              log.error(closedErrorMessage)
+              loggerActor ! LogError(closedErrorMessage)
             }
-          }        
+          }
       }
         case _ => {//do nothing
       }
