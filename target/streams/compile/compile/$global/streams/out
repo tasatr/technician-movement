@@ -1,5 +1,2 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\main\scala\com\technicianmovement\TechnicianMovement.scala:32:60: not enough arguments for constructor TechnicianActor: (name: String, loggerActor: akka.actor.ActorRef)com.technicianmovement.TechnicianActor.[0m
-[0m[[0m[31merror[0m] [0m[0mUnspecified value parameter loggerActor.[0m
-[0m[[0m[31merror[0m] [0m[0m      val technicianActor: ActorRef = system.actorOf(Props(new TechnicianActor(name)), name)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                           ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[33mwarn[0m] [0m[0mthere was one deprecation warning (since 1.0.6); re-run with -deprecation for details[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m

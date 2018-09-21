@@ -22,10 +22,16 @@ class TechnicianActor(name: String, loggerActor: ActorRef) extends Actor with Ac
     //Check if vessel is ship or turbine
     val vesselPattern: Regex = "[vV]essel*".r
     var isTurbine: Boolean = false
+    var isOldVesselTurbine: Boolean = false
 
     vesselPattern.findFirstMatchIn(newVessel) match {
       case Some(_) => isTurbine = false
       case None    => isTurbine = true
+    }
+
+    vesselPattern.findFirstMatchIn(vessel) match {
+      case Some(_) => isOldVesselTurbine = false
+      case None    => isOldVesselTurbine = true
     }
 
     if (isTurbine) {
@@ -41,6 +47,7 @@ class TechnicianActor(name: String, loggerActor: ActorRef) extends Actor with Ac
           vessel = newVessel
           currentStatus = newMovement
         } else if (currentStatus == "" && vessel == "") {
+          //This is the first record for the current technician
           vessel = newVessel
           currentStatus = newMovement
         } else {
@@ -53,14 +60,20 @@ class TechnicianActor(name: String, loggerActor: ActorRef) extends Actor with Ac
         }
       }
       case "Enter" => {
-        if (currentStatus == "Exit") {
+        if (currentStatus == "Exit" && Utils.logicalXOR(isTurbine, isOldVesselTurbine)) {
           log.info("This is correct. Update the existing status from " + currentStatus + " to " + newMovement + ". Previous vessel " + vessel + ", new vessel " + newVessel)
-          //TODO: check that if turbine was entered, then ship was exited and vice versa
+          //Check that if turbine was entered, then ship was exited and vice versa
           vessel = newVessel
           currentStatus = newMovement
         } else if (currentStatus == "" && vessel == "") {
+          //This is the first record for the current technician
           vessel = newVessel
           currentStatus = newMovement
+//        } else if (currentStatus == "Exit" && !isTurbine && !isOldVesselTurbine) {
+//          //A technician might take multiple ships to work?
+//          log.info("This is correct. Update the existing status from " + currentStatus + " to " + newMovement + ". Previous vessel " + vessel + ", new vessel " + newVessel)
+//          vessel = newVessel
+//          currentStatus = newMovement
         } else {
           val errorMessage = Utils.getErrorMessage(date, newVessel, name, "Invalid movement: Previously vessel: " + vessel + ", new vessel: " + newVessel + ". Previous movement: " + currentStatus + ", new movement: " + newMovement, "open");
 //          log.error(new InvalidMovementException("This is an incorrect state."), errorMessage)

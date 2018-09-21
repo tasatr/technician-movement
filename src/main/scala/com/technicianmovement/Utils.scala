@@ -16,4 +16,8 @@ object Utils {
       
       
   }
+  
+  def logicalXOR(bool1: Boolean, bool2: Boolean): Boolean = {
+    return ((bool1 || bool2) && !(bool1 && bool2))
+  }
 }
