@@ -1,4 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\test\scala\com\technicianmovement\TurbineActorSpec.scala:33:39: not found: value LogError[0m
-[0m[[0m[31merror[0m] [0m[0m      testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Turbine is broken\", \"date\" : \"2015-11-24T00:02:00.000+0000\", \"turbine\" : \"B4B\", \"person\" : \"\", \"error_state\" : \"open\"}"))[0m
-[0m[[0m[31merror[0m] [0m[0m                                      ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\test\scala\com\technicianmovement\TechnicianActorSpec.scala:33:5: ')' expected but '}' found.[0m
+[0m[[0m[31merror[0m] [0m[0m    }[0m
+[0m[[0m[31merror[0m] [0m[0m    ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m

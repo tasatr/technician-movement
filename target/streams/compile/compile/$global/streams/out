@@ -1,5 +1,5 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\main\scala\com\technicianmovement\TechnicianMovement.scala:50:57: not enough arguments for constructor TurbineActor: (turbineID: String, loggerActor: akka.actor.ActorRef)com.technicianmovement.TurbineActor.[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\main\scala\com\technicianmovement\TechnicianMovement.scala:32:60: not enough arguments for constructor TechnicianActor: (name: String, loggerActor: akka.actor.ActorRef)com.technicianmovement.TechnicianActor.[0m
 [0m[[0m[31merror[0m] [0m[0mUnspecified value parameter loggerActor.[0m
-[0m[[0m[31merror[0m] [0m[0m      val turbineActor: ActorRef = system.actorOf(Props(new TurbineActor(turbineID)), turbineID)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m      val technicianActor: ActorRef = system.actorOf(Props(new TechnicianActor(name)), name)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                           ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m

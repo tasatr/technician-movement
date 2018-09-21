@@ -29,7 +29,7 @@ object SerializationDemo extends App {
     val convertedTime = TimeSettings.getConvertedTime(inTime)
 
     try {
-      val technicianActor: ActorRef = system.actorOf(Props(new TechnicianActor(name)), name)
+      val technicianActor: ActorRef = system.actorOf(Props(new TechnicianActor(name, loggerActor)), name)
       log.debug("Schedule " + name + " to " + movementType + " " + vessel + " in " + convertedTime + " milliseconds")
       system.scheduler.scheduleOnce(new FiniteDuration(convertedTime, TimeUnit.MILLISECONDS)) {
         technicianActor ! TechnicianActor.SetStatus(date, vessel, movementType)
@@ -70,11 +70,11 @@ object SerializationDemo extends App {
     .runForeach(x => generateTurbineActor(x("ID"), x("ActivePower (MW)"), x("Status"), TimeSettings.getTimestamp(x("Date"), "yyyy-MM-dd hh:mm:ss"),  TimeSettings.getTimestamp(x("Date"), "yyyy-MM-dd hh:mm:ss") - baseTime))
 
 
-//  FileIO.fromPath(Paths.get("movements.csv"))
-//    .via(CsvParsing.lineScanner())
-//    .via(CsvToMap.toMap())
-//    .map(_.mapValues(_.utf8String))
-//    .runForeach(x => generateTechnicianActor(x("Person"), x("Location"), x("Movement type"), TimeSettings.getTimestamp(x("Date"), "dd.MM.yyyy hh:mm"),  TimeSettings.getTimestamp(x("Date"), "dd.MM.yyyy hh:mm") - baseTime))
+  FileIO.fromPath(Paths.get("movements.csv"))
+    .via(CsvParsing.lineScanner())
+    .via(CsvToMap.toMap())
+    .map(_.mapValues(_.utf8String))
+    .runForeach(x => generateTechnicianActor(x("Person"), x("Location"), x("Movement type"), TimeSettings.getTimestamp(x("Date"), "dd.MM.yyyy hh:mm"),  TimeSettings.getTimestamp(x("Date"), "dd.MM.yyyy hh:mm") - baseTime))
 
 } 
   

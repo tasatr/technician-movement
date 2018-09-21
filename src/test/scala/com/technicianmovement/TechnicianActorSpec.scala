@@ -1,14 +1,13 @@
-//#full-example
 package com.technicianmovement
 
+import akka.actor.{ Actor, ActorLogging, ActorRef, ActorSystem, Props }
 import org.scalatest.{ BeforeAndAfterAll, WordSpecLike, Matchers }
-import akka.actor.ActorSystem
 import akka.testkit.{ TestKit, TestProbe }
 import scala.concurrent.duration._
 import scala.language.postfixOps
 import TechnicianActor._
+import LoggerActor._
 
-//#test-classes
 class TechnicianActorSpec(_system: ActorSystem)
   extends TestKit(_system)
   with Matchers
@@ -22,20 +21,20 @@ class TechnicianActorSpec(_system: ActorSystem)
     shutdown(system)
   }
 
-  //#first-test
-  //#specification-example
   "A Technician Actor" should {
-    "update its status when instructed" in {
-      //#specification-example
+    "throw error when technician exits a vessel without having entered it" in {
       val testProbe = TestProbe()
-//      val helloGreetingMessage = "hello"
-//      val helloGreeter = system.actorOf(Greeter.props(helloGreetingMessage, testProbe.ref))
-//      val greetPerson = "Akka"
-//      helloGreeter ! WhoToGreet(greetPerson)
-//      helloGreeter ! Greet
-//      testProbe.expectMsg(500 millis, Greeting(helloGreetingMessage + ", " + greetPerson))
+      val technicianName = "tech1"
+      val technicianActor = system.actorOf(Props(new TechnicianActor(technicianName, testProbe.ref)), technicianName)
+      
+      technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-23 00:00:00", "yyyy-MM-dd hh:mm:ss"), "vessel1", "Enter")
+      technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 00:02:00", "yyyy-MM-dd hh:mm:ss"), "vessel2", "Exit")
+      testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Invalid movement: Previously vessel: vessel1, new vessel: vessel2. Previous movement: Enter, new movement: Exit\", \"date\" : \"2015-11-24T00:02:00.000+0000\", \"turbine\" : \"vessel2\", \"person\" : \"tech1\", \"error_state\" : \"open\"}"))
+
+      technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 00:04:00", "yyyy-MM-dd hh:mm:ss"), "vessel3", "Exit")
+      testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Invalid movement: Previously vessel: vessel2, new vessel: vessel3. Previous movement: Exit, new movement: Exit\", \"date\" : \"2015-11-24T00:04:00.000+0000\", \"turbine\" : \"vessel3\", \"person\" : \"tech1\", \"error_state\" : \"open\"}"))
     }
   }
-  //#first-test
+  
 }
 //#full-example

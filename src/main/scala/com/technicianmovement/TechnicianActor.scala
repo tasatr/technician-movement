@@ -2,23 +2,36 @@ package com.technicianmovement
 
 import akka.actor.{ Actor, ActorLogging, ActorRef, ActorSystem, Props }
 import akka.event.Logging
+import scala.util.matching.Regex
 
 object TechnicianActor {
   //#greeter-messages
-  def props(name: String): Props = Props(new TechnicianActor(name))
+  def props(name: String, loggerActor: ActorRef): Props = Props(new TechnicianActor(name, loggerActor))
   //#greeter-messages
   final case class SetStatus(date: Long, newVessel: String, newMovement: String)
 }
 
-class TechnicianActor(name: String) extends Actor with ActorLogging {
+class TechnicianActor(name: String, loggerActor: ActorRef) extends Actor with ActorLogging {
   import TechnicianActor._
-
-//  val log = Logging(context.system, this)
+  import LoggerActor._
 
   var vessel = ""
   var currentStatus = ""
 
   def setNewStatus(date: Long, newVessel: String, newMovement: String) {
+    //Check if vessel is ship or turbine
+    val vesselPattern: Regex = "[vV]essel*".r
+    var isTurbine: Boolean = false
+
+    vesselPattern.findFirstMatchIn(newVessel) match {
+      case Some(_) => isTurbine = false
+      case None    => isTurbine = true
+    }
+
+    if (isTurbine) {
+      //Update turbine actor
+      context.system.actorSelection("/user/" + newVessel) ! TurbineActor.UpdateTechnician(date, name, newMovement)
+    }
 
     newMovement match {
       case "Exit" => {
@@ -31,10 +44,12 @@ class TechnicianActor(name: String) extends Actor with ActorLogging {
           vessel = newVessel
           currentStatus = newMovement
         } else {
-          //TODO: throw error
+          //Throw error : technician can only exit from the vessel that it has previously entered
           val errorMessage = Utils.getErrorMessage(date, newVessel, name, "Invalid movement: Previously vessel: " + vessel + ", new vessel: " + newVessel + ". Previous movement: " + currentStatus + ", new movement: " + newMovement, "open");
-          log.error(new InvalidMovementException("This is an incorrect state."), errorMessage);
-          //          log.error(new InvalidMovementException("This is an incorrect state."), " Previously vessel: " + vessel + ", new vessel: " + newVessel + ". Previous movement: " + currentStatus + ", new movement: " + newMovement)
+          log.error(errorMessage)
+          loggerActor ! LogError(errorMessage)
+          vessel = newVessel
+          currentStatus = newMovement
         }
       }
       case "Enter" => {
@@ -48,7 +63,10 @@ class TechnicianActor(name: String) extends Actor with ActorLogging {
           currentStatus = newMovement
         } else {
           val errorMessage = Utils.getErrorMessage(date, newVessel, name, "Invalid movement: Previously vessel: " + vessel + ", new vessel: " + newVessel + ". Previous movement: " + currentStatus + ", new movement: " + newMovement, "open");
-          log.error(new InvalidMovementException("This is an incorrect state."), errorMessage)
+//          log.error(new InvalidMovementException("This is an incorrect state."), errorMessage)
+          loggerActor ! LogError(errorMessage)
+          vessel = newVessel
+          currentStatus = newMovement
         }
       }
       case _ => {
