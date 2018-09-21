@@ -4,9 +4,7 @@ import akka.actor.{ Actor, ActorLogging, ActorRef, ActorSystem, Props }
 import akka.event.Logging
 
 object TurbineActor {
-  //#greeter-messages
   def props(turbineID: String, loggerActor: ActorRef): Props = Props(new TurbineActor(turbineID, loggerActor))
-  //#greeter-messages
   final case class SetStatus(date: Long, power: String, status: String)
   final case class UpdateTechnician(date: Long, name: String, movement: String)
 }

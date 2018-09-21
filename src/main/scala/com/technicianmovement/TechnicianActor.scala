@@ -5,9 +5,7 @@ import akka.event.Logging
 import scala.util.matching.Regex
 
 object TechnicianActor {
-  //#greeter-messages
   def props(name: String, loggerActor: ActorRef): Props = Props(new TechnicianActor(name, loggerActor))
-  //#greeter-messages
   final case class SetStatus(date: Long, newVessel: String, newMovement: String)
 }
 

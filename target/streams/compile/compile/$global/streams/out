@@ -1,7 +1,2 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\main\scala\com\technicianmovement\LoggerActor.scala:4:14: object tools is not a member of package scala[0m
-[0m[[0m[31merror[0m] [0m[0mimport scala.tools.nsc.io._[0m
-[0m[[0m[31merror[0m] [0m[0m             ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\main\scala\com\technicianmovement\LoggerActor.scala:16:7: not found: value File[0m
-[0m[[0m[31merror[0m] [0m[0m      File("error_log").appendAll(errorMessage)[0m
-[0m[[0m[31merror[0m] [0m[0m      ^[0m
-[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
+[0m[[0m[33mwarn[0m] [0m[0mthere was one deprecation warning (since 1.0.6); re-run with -deprecation for details[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m

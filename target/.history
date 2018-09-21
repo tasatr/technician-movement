@@ -69,3 +69,7 @@ reStart
 test
 reStart
 test
+reStart
+exit
+reStart
+test

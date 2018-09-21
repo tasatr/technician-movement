@@ -1,3 +1,6 @@
+/**
+ * This class takes care of logging error messages into a file. It is also handy for testing purposes.
+ */
 package com.technicianmovement
 
 import akka.actor.{ Actor, ActorLogging, ActorRef, ActorSystem, Props }
@@ -13,7 +16,7 @@ class LoggerActor extends Actor with ActorLogging {
 
   def receive = {
     case LogError(errorMessage) => {
-      val fw = new FileWriter("error_log.txt", true)
+      val fw = new FileWriter("error.log", true)
       try {
         fw.write(customFormat(errorMessage) + "\n")
       } finally fw.close()

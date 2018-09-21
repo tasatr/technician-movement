@@ -1,5 +1,8 @@
 package com.technicianmovement
 
+/**
+ * This is the main class. It reads the csv files, creates actors and sends messages.
+ */
 import akka.actor.{ Actor, ActorLogging, ActorRef, ActorSystem, Props }
 import akka.stream.scaladsl.{ FileIO }
 import java.nio.file.Paths
@@ -36,6 +39,7 @@ object SerializationDemo extends App {
       }
     } catch {
       case e: Exception =>
+        //This actor is already created. Find the actor and send a message.
         log.debug("Schedule " + name + " to " + movementType + " " + vessel + " in " + convertedTime + " milliseconds")
         system.scheduler.scheduleOnce(new FiniteDuration(convertedTime, TimeUnit.MILLISECONDS)) {
           system.actorSelection("/user/" + name) ! TechnicianActor.SetStatus(date, vessel, movementType)
@@ -55,6 +59,7 @@ object SerializationDemo extends App {
       }
     } catch {
       case e: Exception =>
+        //This actor is already created. Find the actor and send the message.
         log.debug("Schedule " + turbineID + " in " + convertedTime + " milliseconds")
         system.scheduler.scheduleOnce(new FiniteDuration(convertedTime, TimeUnit.MILLISECONDS)) {
           system.actorSelection("/user/" + turbineID) ! TurbineActor.SetStatus(date, power, status)
