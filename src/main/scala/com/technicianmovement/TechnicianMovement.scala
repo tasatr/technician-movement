@@ -42,8 +42,6 @@ object SerializationDemo extends App {
       while (timestamps contains dateToUse) {
         dateToUse += orderHelper
         timeToUse += orderHelper
-        print("Found one entry: " + name + " " + vessel + " " + movementType + " ")
-        println(timeToUse)
       }
       timestamps.append(dateToUse)
       technicians.put(name, timestamps)
@@ -51,8 +49,6 @@ object SerializationDemo extends App {
       var timestamps: ListBuffer[Long] = new ListBuffer[Long]()
       timestamps.append(dateToUse)
       technicians.put(name, timestamps)
-      print("Putting " + name + " ")
-      println(dateToUse)
     }
     val convertedTime = TimeSettings.getConvertedTime(timeToUse)
     
@@ -72,19 +68,19 @@ object SerializationDemo extends App {
     }
 
   }
-  
+
   def generateTurbineActor(turbineID: String, power: String, status: String, date: Long, inTime: Long) = {
     val convertedTime = TimeSettings.getConvertedTime(inTime)
     try {
       val turbineActor: ActorRef = system.actorOf(Props(new TurbineActor(turbineID, loggerActor)), turbineID)
-//      log.debug("Schedule " + turbineID + " in " + convertedTime + " milliseconds")
+      log.debug("Schedule " + turbineID + " in " + convertedTime + " milliseconds")
       system.scheduler.scheduleOnce(new FiniteDuration(convertedTime, TimeUnit.MILLISECONDS)) {
         turbineActor ! TurbineActor.SetStatus(date, power, status)
       }
     } catch {
       case e: Exception =>
         //This actor is already created. Find the actor and send the message.
-//        log.debug("Schedule " + turbineID + " in " + convertedTime + " milliseconds")
+        log.debug("Schedule " + turbineID + " in " + convertedTime + " milliseconds")
         system.scheduler.scheduleOnce(new FiniteDuration(convertedTime, TimeUnit.MILLISECONDS)) {
           system.actorSelection("/user/" + turbineID) ! TurbineActor.SetStatus(date, power, status)
         }

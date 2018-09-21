@@ -50,7 +50,7 @@ class TechnicianActor(name: String, loggerActor: ActorRef) extends Actor with Ac
           currentStatus = newMovement
         } else {
           //Throw error : technician can only exit from the vessel that it has previously entered
-          val errorMessage = Utils.getErrorMessage(date, newVessel, name, "Invalid exiting (old:'" + vessel + "(" + currentStatus + ")' - new:'" + newVessel + "(" + newMovement + ")')", "open");
+          val errorMessage = Utils.getErrorMessage(date, newVessel, name, "Invalid exit (old:'" + vessel + "(" + currentStatus + ")' - new:'" + newVessel + "(" + newMovement + ")')", "open");
           log.error(errorMessage)
           loggerActor ! LogError(errorMessage)
           vessel = newVessel
@@ -74,7 +74,7 @@ class TechnicianActor(name: String, loggerActor: ActorRef) extends Actor with Ac
           currentStatus = newMovement
         } else {
           //Throw an error if user enters a turbine after exiting a turbine, or enters a ship after exiting a ship
-          val errorMessage = Utils.getErrorMessage(date, newVessel, name, "Invalid entering (old:'" + vessel + "(" + currentStatus + ")' - new:'" + newVessel + "(" + newMovement + ")')", "open");
+          val errorMessage = Utils.getErrorMessage(date, newVessel, name, "Invalid entry (old:'" + vessel + "(" + currentStatus + ")' - new:'" + newVessel + "(" + newMovement + ")')", "open");
           log.error(errorMessage)
           loggerActor ! LogError(errorMessage)
           vessel = newVessel

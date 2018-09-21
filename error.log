@@ -1,21 +1,63 @@
 {
-"error" : "Turbine is broken",
- "date" : "2015-11-23T15:52:00.000+0000",
- "turbine" : "Location",
- "person" : "",
+"error" : "Invalid exiting (old:'Vessel 235096731(Exit)' - new:'Vessel 235096731(Exit)')",
+ "date" : "2015-11-23T08:50:10.000+0000",
+ "turbine" : "Vessel 235096731",
+ "person" : "P21",
  "error_state" : "open"
 }
 {
-"error" : "Turbine has been broken for more than 4 hours",
- "date" : "2015-11-23T19:53:00.000+0000",
- "turbine" : "Location",
- "person" : "",
+"error" : "Invalid entering (old:'Vessel 235100575(Enter)' - new:'F10H_PR(Enter)')",
+ "date" : "2015-11-23T09:07:10.000+0000",
+ "turbine" : "F10H_PR",
+ "person" : "P48",
  "error_state" : "open"
 }
 {
-"error" : "Turbine is broken",
- "date" : "2015-11-23T19:53:00.000+0000",
- "turbine" : "Location",
- "person" : "",
- "error_state" : "closed"
+"error" : "Invalid exiting (old:'F10H_PR(Enter)' - new:'Vessel 235100575(Exit)')",
+ "date" : "2015-11-23T09:07:00.000+0000",
+ "turbine" : "Vessel 235100575",
+ "person" : "P48",
+ "error_state" : "open"
+}
+{
+"error" : "Invalid entering (old:'D5A(Exit)' - new:'E1P(Enter)')",
+ "date" : "2015-11-23T10:59:10.000+0000",
+ "turbine" : "E1P",
+ "person" : "P26",
+ "error_state" : "open"
+}
+{
+"error" : "Invalid exiting (old:'F3P(Exit)' - new:'F3P(Exit)')",
+ "date" : "2015-11-23T00:06:10.000+0000",
+ "turbine" : "F3P",
+ "person" : "P57",
+ "error_state" : "open"
+}
+{
+"error" : "Invalid exiting (old:'Vessel 235090838(Enter)' - new:'F3P(Exit)')",
+ "date" : "2015-11-23T00:06:20.000+0000",
+ "turbine" : "F3P",
+ "person" : "P19",
+ "error_state" : "open"
+}
+{
+"error" : "Invalid exiting (old:'F3P(Exit)' - new:'Vessel 235090838(Exit)')",
+ "date" : "2015-11-23T00:10:00.000+0000",
+ "turbine" : "Vessel 235090838",
+ "person" : "P19",
+ "error_state" : "open"
+}
+{
+"error" : "Invalid exiting (old:'Vessel 235100575(Exit)' - new:'F10H_PR(Exit)')",
+ "date" : "2015-11-23T00:22:00.000+0000",
+ "turbine" : "F10H_PR",
+ "person" : "P48",
+ "error_state" : "open"
+}
+{
+"error" : "Invalid exiting (old:'Vessel 235108059(Exit)' - new:'Vessel 235108059(Exit)')",
+ "date" : "2015-11-23T16:52:10.000+0000",
+ "turbine" : "Vessel 235108059",
+ "person" : "P61",
+ "error_state" : "open"
 }

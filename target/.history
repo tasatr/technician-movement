@@ -88,3 +88,10 @@ reStart
 test
 reStart
 test
+exit
+reStart
+test
+reStart
+test
+cd ..
+exit

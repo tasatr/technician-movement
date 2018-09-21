@@ -13,7 +13,7 @@ class TechnicianActorSpec(_system: ActorSystem)
   with Matchers
   with WordSpecLike
   with BeforeAndAfterAll {
-  //#test-classes
+
 
   def this() = this(ActorSystem("TechnicianActorSpec"))
 
@@ -29,10 +29,10 @@ class TechnicianActorSpec(_system: ActorSystem)
       
       technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-23 00:00:00", "yyyy-MM-dd hh:mm:ss"), "vessel1", "Enter")
       technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 00:02:00", "yyyy-MM-dd hh:mm:ss"), "vessel2", "Exit")
-      testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Invalid exiting (old:'vessel1(Enter)' - new:'vessel2(Exit)')\", \"date\" : \"2015-11-24T00:02:00.000+0000\", \"turbine\" : \"vessel2\", \"person\" : \"" + technicianName + "\", \"error_state\" : \"open\"}"))
+      testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Invalid exit (old:'vessel1(Enter)' - new:'vessel2(Exit)')\", \"date\" : \"2015-11-24T00:02:00.000+0000\", \"turbine\" : \"vessel2\", \"person\" : \"" + technicianName + "\", \"error_state\" : \"open\"}"))
 
       technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 00:04:00", "yyyy-MM-dd hh:mm:ss"), "vessel3", "Exit")
-      testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Invalid exiting (old:'vessel2(Exit)' - new:'vessel3(Exit)')\", \"date\" : \"2015-11-24T00:04:00.000+0000\", \"turbine\" : \"vessel3\", \"person\" : \"" + technicianName + "\", \"error_state\" : \"open\"}"))
+      testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Invalid exit (old:'vessel2(Exit)' - new:'vessel3(Exit)')\", \"date\" : \"2015-11-24T00:04:00.000+0000\", \"turbine\" : \"vessel3\", \"person\" : \"" + technicianName + "\", \"error_state\" : \"open\"}"))
     }
   }
   
@@ -44,7 +44,7 @@ class TechnicianActorSpec(_system: ActorSystem)
       
       technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-23 00:00:00", "yyyy-MM-dd hh:mm:ss"), "notaship", "Exit")
       technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 00:02:00", "yyyy-MM-dd hh:mm:ss"), "trb1", "Enter")
-      testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Invalid entering (old:'notaship(Exit)' - new:'trb1(Enter)')\", \"date\" : \"2015-11-24T00:02:00.000+0000\", \"turbine\" : \"trb1\", \"person\" : \"" + technicianName + "\", \"error_state\" : \"open\"}"))
+      testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Invalid entry (old:'notaship(Exit)' - new:'trb1(Enter)')\", \"date\" : \"2015-11-24T00:02:00.000+0000\", \"turbine\" : \"trb1\", \"person\" : \"" + technicianName + "\", \"error_state\" : \"open\"}"))
 
       technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 01:00:00", "yyyy-MM-dd hh:mm:ss"), "trb1", "Exit")
       technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 02:00:00", "yyyy-MM-dd hh:mm:ss"), "Vessel 1", "Enter")
@@ -58,4 +58,4 @@ class TechnicianActorSpec(_system: ActorSystem)
   }
   
 }
-//#full-example
+

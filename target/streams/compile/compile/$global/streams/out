@@ -1,4 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\main\scala\com\technicianmovement\TechnicianMovement.scala:52:18: value add is not a member of scala.collection.mutable.ListBuffer[Long][0m
-[0m[[0m[31merror[0m] [0m[0m      timestamps.add(dateToUse)[0m
-[0m[[0m[31merror[0m] [0m[0m                 ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\main\scala\com\technicianmovement\TechnicianMovement.scala:74:25: value ++ is not a member of Int[0m
+[0m[[0m[31merror[0m] [0m[0m    countTurbinemessages++;[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m
