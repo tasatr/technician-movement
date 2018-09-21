@@ -7,7 +7,7 @@
 		revision="1.0"
 		conf="test"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, pom, scala-tool"
-		date="20180920084131"/>
+		date="20180921121901"/>
 	<dependencies>
 		<module organisation="org.scala-lang" name="scala-reflect">
 			<revision name="2.12.6" status="release" pubdate="20180427043633" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.12.6/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="14">
@@ -102,12 +102,12 @@
 			</revision>
 		</module>
 		<module organisation="com.typesafe.akka" name="akka-slf4j_2.12">
-			<revision name="2.5.16" status="release" pubdate="20180829183258" resolver="public" artresolver="public" homepage="http://akka.io/" extra-info.apiURL="http://doc.akka.io/api/akka/2.5.16" downloaded="true" searched="true" default="false" conf="default, compile, runtime, default(compile), master" position="4">
+			<revision name="2.5.16" status="release" pubdate="20180829183258" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io/" extra-info.apiURL="http://doc.akka.io/api/akka/2.5.16" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="4">
 				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
-				<metadata-artifact status="successful" details="" size="2549" time="126" location="C:\Users\Triinu\.ivy2\cache\com.typesafe.akka\akka-slf4j_2.12\ivy-2.5.16.xml" searched="true" original-local-location="C:\Users\Triinu\.ivy2\cache\com.typesafe.akka\akka-slf4j_2.12\ivy-2.5.16.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-slf4j_2.12/2.5.16/akka-slf4j_2.12-2.5.16.pom"/>
+				<metadata-artifact status="no" details="" size="3386" time="0" location="C:\Users\Triinu\.ivy2\cache\com.typesafe.akka\akka-slf4j_2.12\ivy-2.5.16.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-slf4j_2.12/2.5.16/akka-slf4j_2.12-2.5.16.pom"/>
 				<caller organisation="default" name="technician-movement_2.12" conf="test, compile, runtime" rev="2.5.16" rev-constraint-default="2.5.16" rev-constraint-dynamic="2.5.16" callerrev="1.0"/>
 				<artifacts>
-					<artifact name="akka-slf4j_2.12" type="jar" ext="jar" status="successful" details="" size="16056" time="550" location="C:\Users\Triinu\.ivy2\cache\com.typesafe.akka\akka-slf4j_2.12\jars\akka-slf4j_2.12-2.5.16.jar">
+					<artifact name="akka-slf4j_2.12" type="jar" ext="jar" status="no" details="" size="16056" time="0" location="C:\Users\Triinu\.ivy2\cache\com.typesafe.akka\akka-slf4j_2.12\jars\akka-slf4j_2.12-2.5.16.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-slf4j_2.12/2.5.16/akka-slf4j_2.12-2.5.16.jar"/>
 					</artifact>
 				</artifacts>

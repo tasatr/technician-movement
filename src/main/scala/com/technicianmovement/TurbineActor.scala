@@ -19,6 +19,7 @@ class TurbineActor(turbineID: String, loggerActor: ActorRef) extends Actor with 
   var technician = ""
   var technicianEntered: Long = -1
   var technicianExited: Long = -1
+  var isInErrorState: Boolean = false
   
   def updateTechnicianStatus(date: Long, name: String, movement: String) {
     technician = name
@@ -26,9 +27,11 @@ class TurbineActor(turbineID: String, loggerActor: ActorRef) extends Actor with 
       case "Enter" => 
         technicianEntered = date
         technicianExited = -1
+        isInErrorState = false
       case "Exit" => 
         technicianExited = date
         technicianEntered = -1
+        isInErrorState = false
     }
   }
 
@@ -44,13 +47,15 @@ class TurbineActor(turbineID: String, loggerActor: ActorRef) extends Actor with 
             log.error(errorMessage)
             loggerActor ! LogError(errorMessage)
           } else {
-            if (technicianExited > 0 && (date - technicianExited > 3*60*1000)) {
+            if (technicianExited > 0 && (date - technicianExited > 3*60*1000) && !isInErrorState) {
               //Throw an error if technician exited the turbine and it is still broken after 3 minutes
+              isInErrorState = true;
               val errorMessage = Utils.getErrorMessage(date, turbineID, "", "Turbine is still broken 3 minutes after technician exited", "open")
               log.error(errorMessage)
               loggerActor ! LogError(errorMessage)
-            } else if (date - brokenSince > 4*60*60*1000 && technicianEntered < 0){
+            } else if (date - brokenSince > 4*60*60*1000 && technicianEntered < 0 && !isInErrorState){
               //Throw an error if it has been broken for more than 4 hours and technician has not entered the turbine
+              isInErrorState = true;
               val errorMessage = Utils.getErrorMessage(date, turbineID, "", "Turbine has been broken for more than 4 hours", "open")
               log.error(errorMessage)
               loggerActor ! LogError(errorMessage)  
@@ -61,6 +66,11 @@ class TurbineActor(turbineID: String, loggerActor: ActorRef) extends Actor with 
               loggerActor ! LogError(closedErrorMessage)
             }
           }
+      }
+      case "Working" => {
+        isInErrorState = false
+        currentStatus = "Working"
+        brokenSince = -1
       }
         case _ => {//do nothing
       }

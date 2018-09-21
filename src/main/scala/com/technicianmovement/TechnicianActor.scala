@@ -67,11 +67,11 @@ class TechnicianActor(name: String, loggerActor: ActorRef) extends Actor with Ac
           //This is the first record for the current technician
           vessel = newVessel
           currentStatus = newMovement
-//        } else if (currentStatus == "Exit" && !isTurbine && !isOldVesselTurbine) {
-//          //A technician might take multiple ships to work?
-//          log.info("This is correct. Update the existing status from " + currentStatus + " to " + newMovement + ". Previous vessel " + vessel + ", new vessel " + newVessel)
-//          vessel = newVessel
-//          currentStatus = newMovement
+        } else if (currentStatus == "Exit" && !isTurbine && !isOldVesselTurbine) {
+          //A technician enters a ship, previously exited a ship
+          log.info("This is correct. Update the existing status from " + currentStatus + " to " + newMovement + ". Previous vessel " + vessel + ", new vessel " + newVessel)
+          vessel = newVessel
+          currentStatus = newMovement
         } else {
           //Throw an error if user enters a turbine after exiting a turbine, or enters a ship after exiting a ship
           val errorMessage = Utils.getErrorMessage(date, newVessel, name, "Invalid entering (old:'" + vessel + "(" + currentStatus + ")' - new:'" + newVessel + "(" + newMovement + ")')", "open");

@@ -1,2 +1,4 @@
-[0m[[0m[33mwarn[0m] [0m[0mthere was one deprecation warning (since 1.0.6); re-run with -deprecation for details[0m
-[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Triinu\Projects\technician-movement\src\main\scala\com\technicianmovement\TechnicianMovement.scala:52:18: value add is not a member of scala.collection.mutable.ListBuffer[Long][0m
+[0m[[0m[31merror[0m] [0m[0m      timestamps.add(dateToUse)[0m
+[0m[[0m[31merror[0m] [0m[0m                 ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

@@ -32,6 +32,8 @@ class TurbineActorSpec(_system: ActorSystem)
       turbineActor ! TurbineActor.SetStatus(TimeSettings.getTimestamp("2015-11-23 00:00:00", "yyyy-MM-dd hh:mm:ss"), "3.12", "Working")
       turbineActor ! TurbineActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 00:02:00", "yyyy-MM-dd hh:mm:ss"), "3.12", "Broken")
       testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Turbine is broken\", \"date\" : \"2015-11-24T00:02:00.000+0000\", \"turbine\" : \"" + turbineID + "\", \"person\" : \"\", \"error_state\" : \"open\"}"))
+      turbineActor ! TurbineActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 00:02:01", "yyyy-MM-dd hh:mm:ss"), "3.12", "Broken")
+      testProbe.expectNoMessage(500 millis)
     }
   }
   
@@ -47,6 +49,9 @@ class TurbineActorSpec(_system: ActorSystem)
       testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Turbine is broken\", \"date\" : \"2015-11-24T00:02:00.000+0000\", \"turbine\" : \"" + turbineID + "\", \"person\" : \"\", \"error_state\" : \"open\"}"))
       turbineActor ! TurbineActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 08:02:00", "yyyy-MM-dd hh:mm:ss"), "3.12", "Broken")
       testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Turbine has been broken for more than 4 hours\", \"date\" : \"2015-11-24T08:02:00.000+0000\", \"turbine\" : \"" + turbineID + "\", \"person\" : \"\", \"error_state\" : \"open\"}"))
+      testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Turbine is broken\", \"date\" : \"2015-11-24T08:02:00.000+0000\", \"turbine\" : \"B41\", \"person\" : \"\", \"error_state\" : \"closed\"}"))
+      turbineActor ! TurbineActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 08:02:01", "yyyy-MM-dd hh:mm:ss"), "3.12", "Broken")
+      testProbe.expectNoMessage(500 millis)
     }
   }   
    
@@ -86,6 +91,8 @@ class TurbineActorSpec(_system: ActorSystem)
       
       turbineActor ! TurbineActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 08:02:00", "yyyy-MM-dd hh:mm:ss"), "3.12", "Broken")
       testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Turbine is still broken 3 minutes after technician exited\", \"date\" : \"2015-11-24T08:02:00.000+0000\", \"turbine\" : \"" + turbineID + "\", \"person\" : \"\", \"error_state\" : \"open\"}"))
+      turbineActor ! TurbineActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 08:02:01", "yyyy-MM-dd hh:mm:ss"), "3.12", "Broken")
+      testProbe.expectNoMessage(500 millis)
     }
   }   
 }

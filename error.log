@@ -1,21 +1,21 @@
 {
-"error" : "Invalid entering (old:'Vessel 235098384(Exit)' - new:'Vessel 235098384(Enter)')",
- "date" : "2015-11-23T06:37:00.000+0000",
- "turbine" : "Vessel 235098384",
- "person" : "P1",
+"error" : "Turbine is broken",
+ "date" : "2015-11-23T15:52:00.000+0000",
+ "turbine" : "Location",
+ "person" : "",
  "error_state" : "open"
 }
 {
-"error" : "Invalid entering (old:'Vessel 235098384(Enter)' - new:'Vessel 235098384(Enter)')",
- "date" : "2015-11-23T06:50:00.000+0000",
- "turbine" : "Vessel 235098384",
- "person" : "P1",
+"error" : "Turbine has been broken for more than 4 hours",
+ "date" : "2015-11-23T19:53:00.000+0000",
+ "turbine" : "Location",
+ "person" : "",
  "error_state" : "open"
 }
 {
 "error" : "Turbine is broken",
- "date" : "2015-11-24T00:02:00.000+0000",
- "turbine" : "B4B",
+ "date" : "2015-11-23T19:53:00.000+0000",
+ "turbine" : "Location",
  "person" : "",
- "error_state" : "open"
+ "error_state" : "closed"
 }

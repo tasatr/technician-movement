@@ -52,7 +52,7 @@ class TechnicianActorSpec(_system: ActorSystem)
       
       technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 03:00:00", "yyyy-MM-dd hh:mm:ss"), "Vessel 1", "Exit")
       technicianActor ! TechnicianActor.SetStatus(TimeSettings.getTimestamp("2015-11-24 04:00:00", "yyyy-MM-dd hh:mm:ss"), "Vessel 2", "Enter")
-      testProbe.expectMsg(500 millis, LogError("{\"error\" : \"Invalid entering (old:'Vessel 1(Exit)' - new:'Vessel 2(Enter)')\", \"date\" : \"2015-11-24T04:00:00.000+0000\", \"turbine\" : \"Vessel 2\", \"person\" : \"" + technicianName + "\", \"error_state\" : \"open\"}"))
+      testProbe.expectNoMessage(500 millis)
 
     }
   }
